@@ -155,13 +155,16 @@ services:
       ACCESS_TOKEN_DURATION_UNIT: 'm'
   
   web:
-    build: ./web
+    build:
+      context: ./web
+      args:
+        NEXT_PUBLIC_API_URL: 'http://localhost:3000'
     container_name: web
     ports:
       - "3001:3000"
     environment:
-      API_URL: 'http://api:3000'
-      NEXT_PUBLIC_API_URL: 'http://api:3000'
+      API_URL: 'http://localhost:3000'
+      NEXT_PUBLIC_API_URL: 'http://localhost:3000'
 
 volumes:
   mongo-data:
